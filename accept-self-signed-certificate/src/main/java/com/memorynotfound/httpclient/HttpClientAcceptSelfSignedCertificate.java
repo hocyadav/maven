@@ -32,23 +32,23 @@ public class HttpClientAcceptSelfSignedCertificate {
     	//3. jason string to string Entity obj
     	//4. add string Entity obj in httpPost.setEntity
     		
-    	Body obj = new Body();
+    	Body obj = new Body();//1
     	obj.setName("name 1");
     	obj.setId(123);
     	
-    	String jStr = Util.bodyToJsonStr(obj);
+    	String jStr = Util.bodyToJsonStr(obj);//2
     	System.out.println("jstr : "+jStr);
     	
-    	StringEntity stringEntity = new StringEntity(jStr);
+    	StringEntity stringEntity = new StringEntity(jStr);//3
 
         try (CloseableHttpClient httpclient = createAcceptSelfSignedCertificateClient()) {
             //HttpGet httpget = new HttpGet("https://example.com");//DONE
             //HttpGet httpget = new HttpGet("https://localhost:8081/hello");//DONE
             HttpPost httpget = new HttpPost("https://localhost:8081/hello");//DONE
             //HttpGet httpget = new HttpGet("https://www.google.com");//DONE
-            httpget.setEntity(stringEntity);
-            httpget.setHeader("Accept", "application/json");
-    		httpget.setHeader("Content-type", "application/json");
+            httpget.setEntity(stringEntity);//4
+            httpget.setHeader("Accept", "application/json");//5 if we are sending json as request then this is required else error
+    		httpget.setHeader("Content-type", "application/json");//5 if we are sending json then this is also required 
             
             System.out.println("Executing request : " + httpget.getRequestLine());
 
