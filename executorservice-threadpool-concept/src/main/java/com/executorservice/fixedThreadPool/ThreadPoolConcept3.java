@@ -1,4 +1,4 @@
-package com.executorservice;
+package com.executorservice.fixedThreadPool;
 
 import com.executorservice.task.Task;
 
