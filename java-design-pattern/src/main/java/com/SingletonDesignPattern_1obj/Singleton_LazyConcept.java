@@ -1,24 +1,19 @@
 package com.SingletonDesignPattern_1obj;
 
 public class Singleton_LazyConcept {
+	//private static Singleton_LazyConcept singleton_EagerCOnceptObj = new Singleton_LazyConcept();//Eager
 	
-
-	//private static Singleton_LazyConcept singleton_EagerCOnceptObj = new Singleton_LazyConcept();
-	private static Singleton_LazyConcept obj;//when we want then only create class
-	//1. private construtore
+	//1. private static - instance type
+	private static Singleton_LazyConcept obj;//lazy
 	
-	private Singleton_LazyConcept() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	//2. private constructor - get instance will give instance not by constructor
+	private Singleton_LazyConcept() {	}
 	
-	//2. public method for get instance
-	public Singleton_LazyConcept getInstance() {
-		if (obj == null) {
-			return new Singleton_LazyConcept();
-		}else {
-			return obj;
+	//2. public static method - get instance
+	public static Singleton_LazyConcept getInstance() {
+		if (obj == null) {//if null then create new set static obj as new - else dont update obj
+			obj = new Singleton_LazyConcept();
 		}
-		
+		return obj;
 	}
 }
